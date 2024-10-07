@@ -10,8 +10,6 @@ const InfoCard = (props) => {
         <div className='hover:scale-105 transform duration-200 cursor-pointer flex justify-center' onClick={ () => { Router.push('/about') }}>
             <LazyImage src={siteInfo?.icon} className='rounded-full' width={120} alt={siteConfig('AUTHOR')}/>
          </div>
-         <div>
-         <a className='text-xl py-2 hover:scale-105 transform duration-200 flex justify-center dark:text-gray-300' href="https://blog.louis16s.fun/rss/feed.xml">RSS订阅</a></div>
         <div className='text-xl py-2 hover:scale-105 transform duration-200 flex justify-center dark:text-gray-300'>{siteConfig('AUTHOR')}</div>
         <div className='font-light text-gray-600 mb-2 hover:scale-105 transform duration-200 flex justify-center dark:text-gray-400'>{siteConfig('BIO')}</div>
         <SocialButton/>
