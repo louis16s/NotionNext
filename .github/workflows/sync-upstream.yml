@@ -1,0 +1,35 @@
+name: Sync NotionNext upstream
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout fork repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Add upstream repository
+        run: |
+          git remote add upstream https://github.com/notionnext-org/NotionNext.git
+          git fetch upstream main
+
+      - name: Sync main branch with upstream
+        run: |
+          git checkout main
+          git reset --hard upstream/main
+          git push origin main --force
